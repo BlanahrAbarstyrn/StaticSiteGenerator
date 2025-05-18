@@ -1,16 +1,22 @@
 from enum import Enum
 
 class TextType(Enum):
-    pass
+    NORMAL_TEXT = "Normal text"
+    BOLD_TEXT = "**Bold text**"
+    ITALIC_TEXT = "_Italic text_"
+    CODE_TEXT = "`Code text`"
+    LINK = "[anchor text](url)"
+    IMAGE = "![alt text](url)"
 
-class TextNode():
-    def __init__(text, text_type, url):
+class TextNode:
+    def __init__(self, text, text_type, url):
         self.text = text
         self.text_type = text_type
         if url == "":
             self.url = None
         else:
             self.url = url
+        # no mention of the how/why/what of eq and repr - what are we returning?
 
     def __eq__(self, other):
         if isinstance(other, TextNode):
