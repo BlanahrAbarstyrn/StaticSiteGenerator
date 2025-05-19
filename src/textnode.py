@@ -1,30 +1,26 @@
 from enum import Enum
 
 class TextType(Enum):
-    NORMAL_TEXT = "Normal text"
-    BOLD_TEXT = "**Bold text**"
-    ITALIC_TEXT = "_Italic text_"
-    CODE_TEXT = "`Code text`"
-    LINK = "[anchor text](url)"
-    IMAGE = "![alt text](url)"
+    TEXT = "text"
+    BOLD = "bold"
+    ITALIC = "italic"
+    CODE = "code"
+    LINK = "link"
+    IMAGE = "image"
 
 class TextNode:
-    def __init__(self, text, text_type, url):
+    def __init__(self, text, text_type, url=None):
         self.text = text
         self.text_type = text_type
-        if url == "":
-            self.url = None
-        else:
-            self.url = url
-        # no mention of the how/why/what of eq and repr - what are we returning?
+        self.url = url
 
     def __eq__(self, other):
-        if isinstance(other, TextNode):
-            return (self.text == other.text and
-                    self.text_type == other.text_type and
-                    self.url == other.url)
-        return False
+        return (
+            self.text == other.text and
+            self.text_type == other.text_type and
+            self.url == other.url
+        )
     
     def __repr__(self):
-        return f"TextNode({self.text}, {self.text_type}, {self.url})"
+        return f"TextNode({self.text}, {self.text_type.value}, {self.url})"
     
