@@ -26,3 +26,10 @@ class HTMLNode:
     def __repr__(self):
         return f"HTMLNode({self.tag}, {self.value}, children: {self.children}, {self.props})"
     
+
+    class LeafNode(HTMLNode):
+        def __init__(self, tag=None, value=None, text=None):
+            super().__init__(tag, value)
+            self.text = text
+            markup = HTMLNode.to_html(self.tag, self.value)
+            return markup
